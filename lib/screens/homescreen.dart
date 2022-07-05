@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               Container(
                 padding: const EdgeInsets.all(0),
-                height: 400,
+                height: 350,
               ),
               ShaderMask(
                 shaderCallback: (Rect bounds) {
@@ -44,20 +44,41 @@ class _HomeScreenState extends State<HomeScreen> {
                   alignment: Alignment.bottomCenter,
                 ),
               ),
-              RotatedBox(
-                quarterTurns: 3,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: Text(
-                    "THE UNHEARDS.",
-                    style: TextStyle(
-                        fontSize: 45,
-                        fontWeight: FontWeight.w900,
-                        color: AppColors.mainText.withOpacity(0.15),
-                        letterSpacing: 2),
-                  ),
-                ),
-              ),
+              Positioned(
+                  bottom: 30,
+                  left: 20,
+                  right: 20,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Keep listening",
+                                style: TextStyle(
+                                    color: AppColors.mainText, fontSize: 20)),
+                            Text(
+                              "Song name",
+                              style: TextStyle(
+                                  color: AppColors.themeColors, fontSize: 30),
+                            ),
+                            Text(
+                              "Artist name",
+                              style: TextStyle(
+                                  color: AppColors.secondary, fontSize: 15),
+                            )
+                          ],
+                        ),
+                        Icon(
+                          CupertinoIcons.play_arrow_solid,
+                          color: AppColors.themeColors,
+                        )
+                      ],
+                    ),
+                  ))
             ],
           ),
         ],
