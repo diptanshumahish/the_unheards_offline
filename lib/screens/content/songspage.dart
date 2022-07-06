@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:the_unheards_offline/screens/screens.dart';
 import 'package:the_unheards_offline/widgets/songtile.dart';
 
 import '../../utils/utils.dart';
@@ -119,11 +120,31 @@ class _SongsPageState extends State<SongsPage> {
                     return ListView.builder(
                         itemCount: item.data!.length,
                         itemBuilder: (context, index) {
-                          return SongTile(
-                              index: index,
-                              artwork: item.data![index].id,
-                              title: item.data![index].title,
-                              artist: item.data![index].artist);
+                          return GestureDetector(
+                            onTap: () async {
+                              setState(() {});
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => FullScreenPlayer(
+                                    index: index,
+                                    artist: item.data![index].artist,
+                                    artwork: item.data![index].id,
+                                    title: item.data![index].title,
+                                  ),
+                                ),
+                              );
+                              await _player.setAudioSource(
+                                  createPlaylist(item.data),
+                                  initialIndex: index);
+                              await _player.play();
+                            },
+                            child: SongTile(
+                                index: index,
+                                artwork: item.data![index].id,
+                                title: item.data![index].title,
+                                artist: item.data![index].artist),
+                          );
                         });
                   })),
         ));

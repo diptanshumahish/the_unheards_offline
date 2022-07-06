@@ -2,10 +2,21 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 import 'package:the_unheards_offline/utils/utils.dart';
 
 class FullScreenPlayer extends StatefulWidget {
-  const FullScreenPlayer({Key? key}) : super(key: key);
+  late int index;
+  late var artwork;
+  late var title;
+  late var artist;
+  FullScreenPlayer(
+      {Key? key,
+      required this.index,
+      required this.artwork,
+      required this.title,
+      required this.artist})
+      : super(key: key);
 
   @override
   State<FullScreenPlayer> createState() => _FullScreenPlayerState();
@@ -47,12 +58,15 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
                         Container(
                           height: 300,
                           width: 300,
+                          child: QueryArtworkWidget(
+                            id: widget.artwork,
+                            type: ArtworkType.AUDIO,
+                            artworkBorder: BorderRadius.circular(8),
+                          ),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      'https://m.media-amazon.com/images/I/71zf0DtXOtL._SL1200_.jpg'))),
-                        )
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
                       ],
                     ),
                     //icons on the right side
@@ -89,14 +103,14 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "The Golden Hour",
+                      widget.title,
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           color: AppColors.mainText,
                           fontSize: 30),
                     ),
                     Text(
-                      "Kygo",
+                      widget.artist,
                       style:
                           TextStyle(color: AppColors.themeColors, fontSize: 20),
                     ),

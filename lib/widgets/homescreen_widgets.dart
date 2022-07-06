@@ -113,7 +113,12 @@ class _BottomAudioPlayerState extends State<BottomAudioPlayer> {
             transitionDuration: Duration(milliseconds: 200),
             context: context,
             pageBuilder: (context, anim1, anim2) {
-              return FullScreenPlayer();
+              return FullScreenPlayer(
+                index: 1,
+                artist: "sd",
+                artwork: "hj",
+                title: "boom",
+              );
             },
             transitionBuilder: (context, anim1, anim2, child) {
               return SlideTransition(

@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(textTheme: GoogleFonts.interTextTheme().apply()),
       routes: {
         "musicpage": (context) => const MusicScreen(),
-        "musicplayer": ((context) => const FullScreenPlayer())
       },
     );
   }
