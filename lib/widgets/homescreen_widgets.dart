@@ -62,7 +62,7 @@ class _HomeScreenWIdgetState extends State<HomeScreenWIdget> {
               widgetDetails[widget.index],
               style: TextStyle(
                   color: AppColors.mainText,
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 0.4),
             ),
@@ -70,7 +70,7 @@ class _HomeScreenWIdgetState extends State<HomeScreenWIdget> {
               subDetails[widget.index]["value"],
               style: TextStyle(
                   color: AppColors.themeColors,
-                  fontSize: 15,
+                  fontSize: 14,
                   fontWeight: FontWeight.w500,
                   letterSpacing: 0.4),
             ),

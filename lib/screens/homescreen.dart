@@ -119,19 +119,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           Text("AI based suggestions coming soon !",
                               style: TextStyle(
                                   color: AppColors.mainText,
-                                  fontSize: 30,
+                                  fontSize: 28,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 0.8)),
                           Text("Stay tuned!",
                               style: TextStyle(
                                   color: AppColors.secondary,
-                                  fontSize: 25,
+                                  fontSize: 24,
                                   fontWeight: FontWeight.w500,
                                   letterSpacing: 0.5))
                         ],
                       ),
                     ),
-                    height: 180,
+                    height: 200,
                     width: 500,
                     decoration: BoxDecoration(
                       image: DecorationImage(
