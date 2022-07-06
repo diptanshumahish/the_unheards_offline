@@ -80,19 +80,29 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   )),
               Positioned(
-                  child: Container(
-                height: 400,
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 15,
-                      crossAxisSpacing: 10,
-                      childAspectRatio: 9 / 16),
-                    itemBuilder: (context,index){
-                      return HomeScreenWIdget()
-                    },
-                ),
-              ))
+                  top: 450,
+                  left: 10,
+                  right: 10,
+                  child: SizedBox(
+                    height: 400,
+                    width: MediaQuery.of(context).size.width,
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 10,
+                              crossAxisSpacing: 10,
+                              childAspectRatio: 2 / 1),
+                      itemBuilder: (context, index) {
+                        return HomeScreenWIdget(
+                            songName: "New Song",
+                            totalSongs: 100,
+                            recentlyAddedSongs: 200,
+                            index: index);
+                      },
+                      itemCount: 4,
+                    ),
+                  ))
             ],
           ),
         ],

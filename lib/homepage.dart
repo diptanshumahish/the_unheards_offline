@@ -6,6 +6,7 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:the_unheards_offline/screens/screens.dart';
 import 'package:the_unheards_offline/utils/utils.dart';
+import 'package:the_unheards_offline/widgets/homescreen_widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   //navigation
   int _selectedIndex = 0;
+  int colorr = 0;
 
   void _navigateBottomBar(int index) {
     setState(() {
@@ -54,33 +56,68 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _children[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        elevation: 0.0,
-        backgroundColor: AppColors.mainBackgroundColor,
-        selectedItemColor: AppColors.themeColors,
-        showUnselectedLabels: false,
-        showSelectedLabels: false,
-        unselectedItemColor: AppColors.mainText,
-        onTap: _navigateBottomBar,
-        currentIndex: _selectedIndex,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(FeatherIcons.home),
-            label: ('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FeatherIcons.music),
-            label: ('Music'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FeatherIcons.settings),
-            label: ('settings'),
-          ),
-        ],
-      ),
-    );
+        body: _children[_selectedIndex],
+        bottomNavigationBar: BottomAppBar(
+          elevation: 0.0,
+          color: AppColors.mainBackgroundColor,
+          child: Container(
+              height: 110,
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: BottomAudioPlayer(
+                          imageUrl:
+                              "https://a10.gaanacdn.com/gn_img/song/JD2KJyAbOL/2KJ4geA1WO/size_m_1516002248.webp",
+                          artistName: "The Guy",
+                          songName: "New Song",
+                        )),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(
+                          FeatherIcons.home,
+                          color: (_selectedIndex == 0)
+                              ? AppColors.themeColors
+                              : AppColors.mainText,
+                        ),
+                        onPressed: () {
+                          _navigateBottomBar(0);
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          FeatherIcons.music,
+                          color: (_selectedIndex == 1)
+                              ? AppColors.themeColors
+                              : AppColors.mainText,
+                        ),
+                        onPressed: () {
+                          _navigateBottomBar(1);
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          FeatherIcons.settings,
+                          color: (_selectedIndex == 2)
+                              ? AppColors.themeColors
+                              : AppColors.mainText,
+                        ),
+                        onPressed: () {
+                          _navigateBottomBar(2);
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              )),
+        ));
   }
 
   void requestStoragePermission() async {
