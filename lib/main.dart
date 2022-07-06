@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'The Unheards Offline',
       home: HomePage(),
       theme: ThemeData(textTheme: GoogleFonts.montserratTextTheme().apply()),
+      routes: {"musicplayer": ((context) => FullScreenPlayer())},
     );
   }
 }

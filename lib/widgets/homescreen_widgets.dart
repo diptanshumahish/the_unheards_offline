@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:the_unheards_offline/screens/player/fullscreenplayer.dart';
 import '../utils/utils.dart';
 
 // ignore: must_be_immutable
@@ -83,9 +84,9 @@ class _HomeScreenWIdgetState extends State<HomeScreenWIdget> {
 
 //bottom audio playing widget
 
+// ignore: must_be_immutable
 class BottomAudioPlayer extends StatefulWidget {
-  late var imageUrl =
-      "https://a10.gaanacdn.com/gn_img/song/JD2KJyAbOL/2KJ4geA1WO/size_m_1516002248.webp";
+  var imageUrl = " ";
   late var songName = "Song Name";
   late var artistName = "Artist name";
   BottomAudioPlayer(
@@ -102,47 +103,71 @@ class BottomAudioPlayer extends StatefulWidget {
 class _BottomAudioPlayerState extends State<BottomAudioPlayer> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: AppColors.mainText.withOpacity(0.4))),
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-        child: Row(
-          children: [
-            Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  image: DecorationImage(image: NetworkImage(widget.imageUrl))),
-            ),
-            SizedBox(width: 10),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(widget.songName,
-                          style: TextStyle(color: AppColors.themeColors)),
-                      Text(
-                        widget.artistName,
-                        style: TextStyle(color: AppColors.secondary),
-                      )
-                    ],
-                  ),
-                  Container(
-                      child: Icon(
-                    CupertinoIcons.play_arrow_solid,
-                    color: AppColors.themeColors,
-                  ))
-                ],
+    return GestureDetector(
+      onTap: () {
+        {
+          showGeneralDialog(
+            barrierLabel: "Label",
+            barrierDismissible: false,
+            barrierColor: AppColors.mainBackgroundColor.withOpacity(0.5),
+            transitionDuration: Duration(milliseconds: 200),
+            context: context,
+            pageBuilder: (context, anim1, anim2) {
+              return FullScreenPlayer();
+            },
+            transitionBuilder: (context, anim1, anim2, child) {
+              return SlideTransition(
+                position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                    .animate(anim1),
+                child: child,
+              );
+            },
+          );
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: AppColors.mainText.withOpacity(0.4))),
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+          child: Row(
+            children: [
+              Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    image:
+                        DecorationImage(image: NetworkImage(widget.imageUrl))),
               ),
-            ),
-          ],
+              SizedBox(width: 10),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(widget.songName,
+                            style: TextStyle(color: AppColors.themeColors)),
+                        Text(
+                          widget.artistName,
+                          style: TextStyle(color: AppColors.secondary),
+                        )
+                      ],
+                    ),
+                    Container(
+                        child: Icon(
+                      CupertinoIcons.play_arrow_solid,
+                      color: AppColors.themeColors,
+                    ))
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

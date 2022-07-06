@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   BottomAudioPlayer(
                     imageUrl:
-                        "https://a10.gaanacdn.com/gn_img/song/JD2KJyAbOL/2KJ4geA1WO/size_m_1516002248.webp",
+                        "https://m.media-amazon.com/images/I/71zf0DtXOtL._SL1200_.jpg",
                     artistName: "The Guy",
                     songName: "New Song",
                   ),
