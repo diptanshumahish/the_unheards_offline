@@ -119,27 +119,28 @@ class _BottomAudioPlayerState extends State<BottomAudioPlayer> {
                   image: DecorationImage(image: NetworkImage(widget.imageUrl))),
             ),
             SizedBox(width: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(widget.songName,
-                        style: TextStyle(color: AppColors.themeColors)),
-                    Text(
-                      widget.artistName,
-                      style: TextStyle(color: AppColors.secondary),
-                    )
-                  ],
-                ),
-                SizedBox(width: MediaQuery.of(context).size.width / 2),
-                Container(
-                    child: Icon(
-                  CupertinoIcons.play_arrow_solid,
-                  color: AppColors.themeColors,
-                ))
-              ],
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(widget.songName,
+                          style: TextStyle(color: AppColors.themeColors)),
+                      Text(
+                        widget.artistName,
+                        style: TextStyle(color: AppColors.secondary),
+                      )
+                    ],
+                  ),
+                  Container(
+                      child: Icon(
+                    CupertinoIcons.play_arrow_solid,
+                    color: AppColors.themeColors,
+                  ))
+                ],
+              ),
             ),
           ],
         ),
