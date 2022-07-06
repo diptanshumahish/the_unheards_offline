@@ -127,6 +127,7 @@ class _BottomAudioPlayerState extends State<BottomAudioPlayer> {
       },
       child: Container(
         decoration: BoxDecoration(
+            color: AppColors.mainBackgroundColor,
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: AppColors.mainText.withOpacity(0.4))),
         width: MediaQuery.of(context).size.width,

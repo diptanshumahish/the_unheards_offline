@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../screens/content/content.dart';
-import '../utils/custom_page_rputes.dart';
 import '../utils/utils.dart';
 
 class MusicScreenTop extends StatelessWidget {
@@ -40,15 +39,35 @@ class MusicScreenTop extends StatelessWidget {
     ];
 
     return GestureDetector(
+      // },
       onTap: () {
-        Navigator.of(context).push(CustomPageRoute(child: pageNames[index]));
+        {
+          showGeneralDialog(
+            barrierLabel: "Label",
+            barrierDismissible: false,
+            barrierColor: AppColors.mainBackgroundColor.withOpacity(0.5),
+            transitionDuration: Duration(milliseconds: 200),
+            context: context,
+            pageBuilder: (context, anim1, anim2) {
+              return pageNames[index];
+            },
+            transitionBuilder: (context, anim1, anim2, child) {
+              return SlideTransition(
+                position: Tween(begin: Offset(-1, 0), end: Offset(0, 0))
+                    .animate(anim1),
+                child: child,
+              );
+            },
+          );
+        }
       },
+
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
             image: DecorationImage(
                 colorFilter: ColorFilter.mode(
-                    AppColors.mainBackgroundColor.withOpacity(0.66),
+                    AppColors.mainBackgroundColor.withOpacity(0.5),
                     BlendMode.darken),
                 image: NetworkImage(
                   contentType[index]["imageurl"],
