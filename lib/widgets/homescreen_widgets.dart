@@ -131,12 +131,12 @@ class _BottomAudioPlayerState extends State<BottomAudioPlayer> {
             border: Border.all(color: AppColors.mainText.withOpacity(0.4))),
         width: MediaQuery.of(context).size.width,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Row(
             children: [
               Container(
-                height: 50,
-                width: 50,
+                height: 40,
+                width: 40,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     image:
