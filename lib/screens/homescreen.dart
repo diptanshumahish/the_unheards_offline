@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:the_unheards_offline/utils/utils.dart';
+import 'package:the_unheards_offline/widgets/homescreen_widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,12 +16,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppColors.mainBackgroundColor,
       body: ListView(
+        physics: BouncingScrollPhysics(),
         children: <Widget>[
           Stack(
             children: <Widget>[
               Container(
                 padding: const EdgeInsets.all(0),
-                height: 350,
+                height: MediaQuery.of(context).size.height,
               ),
               ShaderMask(
                 shaderCallback: (Rect bounds) {
@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Positioned(
-                  bottom: 30,
+                  top: 350,
                   left: 20,
                   right: 20,
                   child: SizedBox(
@@ -72,13 +72,27 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                           ],
                         ),
-                        Icon(
+                        const Icon(
                           CupertinoIcons.play_arrow_solid,
                           color: AppColors.themeColors,
                         )
                       ],
                     ),
-                  ))
+                  )),
+              Positioned(
+                  child: Container(
+                height: 400,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 15,
+                      crossAxisSpacing: 10,
+                      childAspectRatio: 9 / 16),
+                    itemBuilder: (context,index){
+                      return HomeScreenWIdget()
+                    },
+                ),
+              ))
             ],
           ),
         ],
