@@ -1,9 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:just_audio/just_audio.dart';
-import 'package:on_audio_query/on_audio_query.dart';
-import 'package:rxdart/rxdart.dart';
+
 import 'package:the_unheards_offline/screens/screens.dart';
 import 'package:the_unheards_offline/utils/utils.dart';
 import 'package:the_unheards_offline/widgets/homescreen_widgets.dart';
@@ -35,24 +32,6 @@ class _HomePageState extends State<HomePage> {
 
   // navigation above
 
-  //define the audio player
-  final OnAudioQuery _audioQuery = OnAudioQuery();
-//player
-  final AudioPlayer _player = AudioPlayer();
-
-  //request storage permisiion
-  @override
-  void initState() {
-    super.initState();
-    requestStoragePermission();
-  }
-
-  @override
-  void dispose() {
-    _player.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +41,7 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: BottomAppBar(
           color: AppColors.transparent,
           elevation: 0,
-          child: Container(
+          child: SizedBox(
               height: 110,
               width: MediaQuery.of(context).size.width,
               child: Column(
@@ -115,16 +94,5 @@ class _HomePageState extends State<HomePage> {
                 ],
               )),
         ));
-  }
-
-  void requestStoragePermission() async {
-    if (!kIsWeb) {
-      //web has no permssions
-      bool permissionStatus = await _audioQuery.permissionsStatus();
-      if (!permissionStatus) {
-        await _audioQuery.permissionsRequest();
-      }
-      //ensure build method is called
-    }
   }
 }

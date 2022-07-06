@@ -84,13 +84,16 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "The Golden Hour",
-                      style: TextStyle(color: AppColors.mainText, fontSize: 30),
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.mainText,
+                          fontSize: 30),
                     ),
                     Text(
                       "Kygo",
