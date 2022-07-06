@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import '../utils/utils.dart';
 
 // ignore: must_be_immutable
@@ -36,20 +33,49 @@ class _HomeScreenWIdgetState extends State<HomeScreenWIdget> {
     {"value": widget.totalSongs.toString()},
     {"value": "Coming Soon"}
   ];
+  final List<String> imageUrl = [
+    "https://source.unsplash.com/random/1920x1080/?night/1",
+    "https://source.unsplash.com/random/1920x1080/?sunset/2",
+    "https://source.unsplash.com/random/1920x1080/?music/3",
+    "https://source.unsplash.com/random/1920x1080/?music/4"
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 50,
       width: 150,
       decoration: BoxDecoration(
-          color: AppColors.secondary, borderRadius: BorderRadius.circular(5)),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(widgetDetails[widget.index]),
-          Text(subDetails[widget.index]["value"]),
-        ],
+          image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  AppColors.mainBackgroundColor.withOpacity(0.7),
+                  BlendMode.darken),
+              fit: BoxFit.cover,
+              image: NetworkImage(imageUrl[widget.index])),
+          borderRadius: BorderRadius.circular(5)),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              widgetDetails[widget.index],
+              style: TextStyle(
+                  color: AppColors.mainText,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 0.4),
+            ),
+            Text(
+              subDetails[widget.index]["value"],
+              style: TextStyle(
+                  color: AppColors.themeColors,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.4),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         const Icon(
                           CupertinoIcons.play_circle_fill,
                           color: AppColors.themeColors,
-                          size: 40,
+                          size: 70,
                         )
                       ],
                     ),
