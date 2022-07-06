@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../utils/utils.dart';
@@ -32,7 +34,7 @@ class _HomeScreenWIdgetState extends State<HomeScreenWIdget> {
     {"value": widget.songName},
     {"value": widget.recentlyAddedSongs.toString()},
     {"value": widget.totalSongs.toString()},
-    {"value": " "}
+    {"value": "Coming Soon"}
   ];
   @override
   Widget build(BuildContext context) {
@@ -74,33 +76,47 @@ class BottomAudioPlayer extends StatefulWidget {
 class _BottomAudioPlayerState extends State<BottomAudioPlayer> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppColors.mainText.withOpacity(0.4))),
       width: MediaQuery.of(context).size.width,
-      child: Row(
-        children: [
-          Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                image: DecorationImage(image: NetworkImage(widget.imageUrl))),
-          ),
-          SizedBox(width: 10),
-          Positioned(
-            right: 0,
-            child: Row(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+        child: Row(
+          children: [
+            Container(
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  image: DecorationImage(image: NetworkImage(widget.imageUrl))),
+            ),
+            SizedBox(width: 10),
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Text(widget.songName), Text(widget.artistName)],
+                  children: [
+                    Text(widget.songName,
+                        style: TextStyle(color: AppColors.themeColors)),
+                    Text(
+                      widget.artistName,
+                      style: TextStyle(color: AppColors.secondary),
+                    )
+                  ],
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width / 2),
-                Container(child: Icon(CupertinoIcons.play))
+                Container(
+                    child: Icon(
+                  CupertinoIcons.play_arrow_solid,
+                  color: AppColors.themeColors,
+                ))
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -56,25 +56,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppColors.mainBackgroundColor,
+        extendBodyBehindAppBar: true,
         body: _children[_selectedIndex],
         bottomNavigationBar: BottomAppBar(
-          elevation: 0.0,
-          color: AppColors.mainBackgroundColor,
+          color: AppColors.transparent,
+          elevation: 0,
           child: Container(
               height: 110,
               width: MediaQuery.of(context).size.width,
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: BottomAudioPlayer(
-                          imageUrl:
-                              "https://a10.gaanacdn.com/gn_img/song/JD2KJyAbOL/2KJ4geA1WO/size_m_1516002248.webp",
-                          artistName: "The Guy",
-                          songName: "New Song",
-                        )),
+                  BottomAudioPlayer(
+                    imageUrl:
+                        "https://a10.gaanacdn.com/gn_img/song/JD2KJyAbOL/2KJ4geA1WO/size_m_1516002248.webp",
+                    artistName: "The Guy",
+                    songName: "New Song",
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.max,

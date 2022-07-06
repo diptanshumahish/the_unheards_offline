@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               Container(
                 padding: const EdgeInsets.all(0),
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height + 100,
               ),
               ShaderMask(
                 shaderCallback: (Rect bounds) {
@@ -73,8 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         const Icon(
-                          CupertinoIcons.play_arrow_solid,
+                          CupertinoIcons.play_circle_fill,
                           color: AppColors.themeColors,
+                          size: 40,
                         )
                       ],
                     ),
@@ -87,6 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 400,
                     width: MediaQuery.of(context).size.width,
                     child: GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
@@ -101,6 +103,45 @@ class _HomeScreenState extends State<HomeScreen> {
                             index: index);
                       },
                       itemCount: 4,
+                    ),
+                  )),
+              Positioned(
+                  bottom: 30,
+                  left: 10,
+                  right: 10,
+                  child: Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("AI based suggestions coming soon !",
+                              style: TextStyle(
+                                  color: AppColors.mainText,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 0.8)),
+                          Text("Stay tuned!",
+                              style: TextStyle(
+                                  color: AppColors.secondary,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 0.5))
+                        ],
+                      ),
+                    ),
+                    height: 180,
+                    width: 500,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          colorFilter: ColorFilter.mode(
+                              Colors.black.withOpacity(0.8), BlendMode.lighten),
+                          image: NetworkImage(
+                            'https://images.unsplash.com/photo-1572297905000-240a65cf5b03?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+                          ),
+                          fit: BoxFit.cover),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ))
             ],
