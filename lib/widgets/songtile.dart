@@ -23,51 +23,49 @@ class SongTile extends StatefulWidget {
 class _SongTileState extends State<SongTile> {
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-        child: Container(
-            height: 80,
-            decoration: BoxDecoration(
-                border: Border.all(
-                    width: 0.1, color: AppColors.mainText.withOpacity(0.5)),
-                borderRadius: BorderRadius.circular(6),
-                color: AppColors.transparent),
-            width: MediaQuery.of(context).size.width,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  QueryArtworkWidget(
-                    id: widget.artwork,
-                    type: ArtworkType.AUDIO,
-                    artworkQuality: FilterQuality.high,
-                    artworkBorder: BorderRadius.circular(5),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+      child: Container(
+          height: 80,
+          decoration: BoxDecoration(
+              border: Border.all(
+                  width: 0.1, color: AppColors.mainText.withOpacity(0.5)),
+              borderRadius: BorderRadius.circular(6),
+              color: AppColors.transparent),
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              children: [
+                QueryArtworkWidget(
+                  id: widget.artwork,
+                  type: ArtworkType.AUDIO,
+                  artworkQuality: FilterQuality.high,
+                  artworkBorder: BorderRadius.circular(5),
+                ),
+                const SizedBox(width: 15),
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(widget.title,
+                          softWrap: false,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: TextStyle(
+                              fontSize: 17,
+                              overflow: TextOverflow.clip,
+                              color: AppColors.mainText)),
+                      SizedBox(height: 5),
+                      Text(widget.artist,
+                          style: TextStyle(color: AppColors.themeColors))
+                    ],
                   ),
-                  const SizedBox(width: 15),
-                  Flexible(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(widget.title,
-                            softWrap: false,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: TextStyle(
-                                fontSize: 17,
-                                overflow: TextOverflow.clip,
-                                color: AppColors.mainText)),
-                        SizedBox(height: 5),
-                        Text(widget.artist,
-                            style: TextStyle(color: AppColors.themeColors))
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            )),
-      ),
+                )
+              ],
+            ),
+          )),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:the_unheards_offline/utils/utils.dart';
 
@@ -23,6 +24,7 @@ class FullScreenPlayer extends StatefulWidget {
 }
 
 class _FullScreenPlayerState extends State<FullScreenPlayer> {
+  final AudioPlayer _player = AudioPlayer();
   @override
   Widget build(BuildContext context) {
     return Dismissible(
@@ -133,12 +135,16 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
                   IconButton(
                     icon: Icon(CupertinoIcons.play_circle_fill,
                         color: AppColors.themeColors, size: 45),
-                    onPressed: () {},
+                    onPressed: () {
+                      _player.pause();
+                    },
                   ),
                   IconButton(
                     icon: Icon(CupertinoIcons.forward_end_fill,
                         color: AppColors.secondary, size: 45),
-                    onPressed: () {},
+                    onPressed: () {
+                      _player.play();
+                    },
                   )
                 ],
               )

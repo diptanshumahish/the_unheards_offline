@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_unheards_offline/screens/screens.dart';
 import 'package:the_unheards_offline/widgets/songtile.dart';
 
@@ -122,7 +123,13 @@ class _SongsPageState extends State<SongsPage> {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () async {
-                              setState(() {});
+                              final SharedPreferences sharedPreferences =
+                                  await SharedPreferences.getInstance();
+                              sharedPreferences.setString("songName",
+                                  item.data![index].title.toString());
+                              sharedPreferences.setString("artistName",
+                                  item.data![index].artist.toString());
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

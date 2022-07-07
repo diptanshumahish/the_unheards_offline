@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 import 'package:the_unheards_offline/screens/player/fullscreenplayer.dart';
 import '../utils/utils.dart';
 
@@ -7,6 +8,7 @@ class HomeScreenWIdget extends StatefulWidget {
   late var songName = "";
   late int totalSongs = 0;
   late int recentlyAddedSongs = 0;
+
   int index;
 
   HomeScreenWIdget({
@@ -23,7 +25,7 @@ class HomeScreenWIdget extends StatefulWidget {
 
 class _HomeScreenWIdgetState extends State<HomeScreenWIdget> {
   final List<String> widgetDetails = [
-    "Currently Playing",
+    "Last played",
     "Recently Added",
     "Favorites",
     "Suggestions"

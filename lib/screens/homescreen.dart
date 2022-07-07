@@ -1,16 +1,44 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:on_audio_query/on_audio_query.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_unheards_offline/utils/utils.dart';
 import 'package:the_unheards_offline/widgets/homescreen_widgets.dart';
 
+String finalName = "temp";
+String finalArtist = "unkwown";
+
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  late ArtworkType artwork;
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    getData().whenComplete(() => HomeScreen());
+    super.initState();
+  }
+
+  Future getData() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var name = sharedPreferences.getString("songName");
+    var artist = sharedPreferences.getString("artistName");
+    setState(() {
+      if (name == null) {
+        finalName = "Not playing";
+        finalArtist = "Unavailable";
+      } else {
+        finalName = name;
+        finalArtist = artist.toString();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,12 +89,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 style: TextStyle(
                                     color: AppColors.mainText, fontSize: 20)),
                             Text(
-                              "Song name",
+                              finalName,
                               style: TextStyle(
                                   color: AppColors.themeColors, fontSize: 30),
                             ),
                             Text(
-                              "Artist name",
+                              finalArtist,
                               style: TextStyle(
                                   color: AppColors.secondary, fontSize: 15),
                             )
@@ -97,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               childAspectRatio: 2 / 1),
                       itemBuilder: (context, index) {
                         return HomeScreenWIdget(
-                            songName: "New Song",
+                            songName: finalName,
                             totalSongs: 100,
                             recentlyAddedSongs: 200,
                             index: index);

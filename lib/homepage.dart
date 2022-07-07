@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
 
   //different pages to navigate to
   final List<Widget> _children = [
-    const HomeScreen(),
+    HomeScreen(),
     const MusicScreen(),
     const SettingsSCreen(),
   ];
