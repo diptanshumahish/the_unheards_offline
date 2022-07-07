@@ -82,23 +82,30 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Keep listening",
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Keep listening",
+                                  style: TextStyle(
+                                      color: AppColors.mainText, fontSize: 20)),
+                              Text(
+                                finalName,
+                                softWrap: false,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
                                 style: TextStyle(
-                                    color: AppColors.mainText, fontSize: 20)),
-                            Text(
-                              finalName,
-                              style: TextStyle(
-                                  color: AppColors.themeColors, fontSize: 30),
-                            ),
-                            Text(
-                              finalArtist,
-                              style: TextStyle(
-                                  color: AppColors.secondary, fontSize: 15),
-                            )
-                          ],
+                                    overflow: TextOverflow.ellipsis,
+                                    color: AppColors.themeColors,
+                                    fontSize: 30),
+                              ),
+                              Text(
+                                finalArtist,
+                                style: TextStyle(
+                                    color: AppColors.secondary, fontSize: 15),
+                              )
+                            ],
+                          ),
                         ),
                         const Icon(
                           CupertinoIcons.play_circle_fill,

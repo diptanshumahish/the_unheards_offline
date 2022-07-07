@@ -87,8 +87,8 @@ class _SongsPageState extends State<SongsPage> {
                       BottomAudioPlayer(
                         imageUrl:
                             "https://m.media-amazon.com/images/I/71zf0DtXOtL._SL1200_.jpg",
-                        artistName: "The Guy",
-                        songName: "New Song",
+                        artistName: finalArtist,
+                        songName: finalName,
                       ),
                       SizedBox(height: 10),
                     ],

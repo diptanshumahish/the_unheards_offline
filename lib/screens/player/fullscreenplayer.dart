@@ -61,7 +61,7 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
                           height: 300,
                           width: 300,
                           child: QueryArtworkWidget(
-                            id: widget.artwork,
+                            id: 2,
                             type: ArtworkType.AUDIO,
                             artworkBorder: BorderRadius.circular(8),
                           ),
