@@ -17,7 +17,7 @@ class _MusicScreenState extends State<MusicScreen> {
       appBar: AppBar(
           elevation: 0,
           leading: IconButton(
-              onPressed: () => Navigator.pushNamed(context, "/"),
+              onPressed: () => Navigator.pop(context),
               icon: const Icon(CupertinoIcons.back)),
           centerTitle: true,
           backgroundColor: AppColors.transparent,

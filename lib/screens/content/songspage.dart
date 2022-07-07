@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -7,7 +8,8 @@ import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:the_unheards_offline/screens/screens.dart';
+import 'package:the_unheards_offline/screens/player/fullscreenplayer.dart';
+import 'package:the_unheards_offline/screens/screens.dart' as prefix;
 import 'package:the_unheards_offline/widgets/songtile.dart';
 
 import '../../utils/utils.dart';
@@ -54,6 +56,11 @@ class _SongsPageState extends State<SongsPage> {
 
   @override
   void dispose() {
+    BottomAudioPlayer(
+      artistName: finalArtist,
+      imageUrl: "https://m.media-amazon.com/images/I/71zf0DtXOtL._SL1200_.jpg",
+      songName: finalName,
+    );
     _player.dispose();
     super.dispose();
   }

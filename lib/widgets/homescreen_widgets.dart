@@ -1,7 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_unheards_offline/screens/player/fullscreenplayer.dart';
+import 'package:the_unheards_offline/screens/screens.dart';
 import '../utils/utils.dart';
+
+String finalName = "null";
+String finalArtist = "unkwown";
+String finalAdded = "null";
 
 // ignore: must_be_immutable
 class HomeScreenWIdget extends StatefulWidget {
@@ -104,6 +110,35 @@ class BottomAudioPlayer extends StatefulWidget {
 
 class _BottomAudioPlayerState extends State<BottomAudioPlayer> {
   @override
+  void initState() {
+    getData().whenComplete(() => BottomAudioPlayer(
+          songName: finalName,
+          artistName: finalArtist,
+          imageUrl: "https://source.unsplash.com/random/1920x1080/?music/4",
+        ));
+
+    super.initState();
+  }
+
+  Future getData() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var name = sharedPreferences.getString("songName");
+    var artist = sharedPreferences.getString("artistName");
+    var number = sharedPreferences.getInt("added");
+    setState(() {
+      if (name == null) {
+        finalName = "Not playing";
+        finalArtist = "Unavailable";
+      } else {
+        finalName = name;
+        finalArtist = artist.toString();
+        finalAdded = number.toString();
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
@@ -155,16 +190,20 @@ class _BottomAudioPlayerState extends State<BottomAudioPlayer> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(widget.songName,
-                            style: TextStyle(color: AppColors.themeColors)),
-                        Text(
-                          widget.artistName,
-                          style: TextStyle(color: AppColors.secondary),
-                        )
-                      ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(finalName,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: TextStyle(color: AppColors.themeColors)),
+                          Text(
+                            finalArtist,
+                            style: TextStyle(color: AppColors.secondary),
+                          )
+                        ],
+                      ),
                     ),
                     Container(
                         child: Icon(

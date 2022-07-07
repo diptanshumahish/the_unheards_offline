@@ -6,7 +6,7 @@ import 'package:the_unheards_offline/screens/screens.dart';
 import 'package:the_unheards_offline/utils/utils.dart';
 import 'package:the_unheards_offline/widgets/homescreen_widgets.dart';
 
-String finalName = "temp";
+String finalName = "null";
 String finalArtist = "unkwown";
 String finalAdded = "null";
 
@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     getData().whenComplete(() => HomeScreen());
+
     super.initState();
   }
 
