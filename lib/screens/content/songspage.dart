@@ -129,6 +129,8 @@ class _SongsPageState extends State<SongsPage> {
                                   item.data![index].title.toString());
                               sharedPreferences.setString("artistName",
                                   item.data![index].artist.toString());
+                              sharedPreferences.setInt(
+                                  "added", item.data!.length);
 
                               Navigator.push(
                                 context,

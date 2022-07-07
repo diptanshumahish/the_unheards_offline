@@ -6,8 +6,8 @@ import '../utils/utils.dart';
 // ignore: must_be_immutable
 class HomeScreenWIdget extends StatefulWidget {
   late var songName = "";
-  late int totalSongs = 0;
-  late int recentlyAddedSongs = 0;
+  late String totalSongs = "null";
+  late var recentlyAddedSongs = "";
 
   int index;
 

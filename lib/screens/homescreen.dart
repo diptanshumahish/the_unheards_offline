@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:the_unheards_offline/screens/screens.dart';
 import 'package:the_unheards_offline/utils/utils.dart';
 import 'package:the_unheards_offline/widgets/homescreen_widgets.dart';
 
 String finalName = "temp";
 String finalArtist = "unkwown";
+String finalAdded = "null";
 
 class HomeScreen extends StatefulWidget {
   late ArtworkType artwork;
@@ -28,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         await SharedPreferences.getInstance();
     var name = sharedPreferences.getString("songName");
     var artist = sharedPreferences.getString("artistName");
+    var number = sharedPreferences.getInt("added");
     setState(() {
       if (name == null) {
         finalName = "Not playing";
@@ -35,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       } else {
         finalName = name;
         finalArtist = artist.toString();
+        finalAdded = number.toString();
       }
     });
   }
@@ -133,8 +137,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (context, index) {
                         return HomeScreenWIdget(
                             songName: finalName,
-                            totalSongs: 100,
-                            recentlyAddedSongs: 200,
+                            totalSongs: finalAdded,
+                            recentlyAddedSongs: finalAdded.toString(),
                             index: index);
                       },
                       itemCount: 4,
